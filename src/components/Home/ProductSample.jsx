@@ -44,7 +44,7 @@ const ProdcutComponent = () => {
           </p>
 
           <div className="flex mx-auto py-4 ">
-            <div className="md:flex flex-wrap gap-5 mx-auto">
+            <div className="md:flex flex-wrap lg:flex-nowrap gap-5 mx-auto">
               {samples.map((val) => {
                 return (
                   <div key={val.id} className="mx-auto">
@@ -76,7 +76,7 @@ const ProdcutComponent = () => {
 
           <div className="flex mx-auto py-4">
             <div className="gap-5 mx-auto">
-              <div className="mx-auto md:flex flex-wrap justify-evenly">
+              <div className="mx-auto md:flex flex-wrap lg:flex-nowrap lg:gap-5 justify-evenly">
                 <Badge
                   img={beansBadge}
                   title={'Supreme Beans'}
