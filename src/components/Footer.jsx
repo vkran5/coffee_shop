@@ -5,15 +5,15 @@ const Footer = () => {
   return (
     <>
       <img
-        className="absolute bottom-0 w-screen -z-10"
+        className="hidden lg:block absolute bottom-0 w-screen -z-10"
         src={beans}
         alt="bg/img"
       />
 
-      <div className="w-screen h-[492px] bg-footer flex ">
+      <div className="w-screen lg:h-[492px] bg-footer py-3 flex flex-col">
         <div className="w-3/4 mx-auto">
-          <div className="pt-[90px] flex gap-20">
-            <div className="w-1/3">
+          <div className="lg:pt-[90px] lg:flex gap-20">
+            <div className="lg:5/6 lg:w-1/3">
               <h1 className="text-white text-[54px] font-clicker">
                 Bean Scene
               </h1>
@@ -26,7 +26,7 @@ const Footer = () => {
               <img className="pt-10" src={icons} alt="icons/img" />
             </div>
 
-            <div className="flex w-3/4 pt-5 justify-between">
+            <div className="hidden lg:flex w-3/4 pt-5 justify-between">
               <div className="flex flex-col gap-2">
                 <h1 className="text-white font-semibold font-playfair text-[26px]">
                   About

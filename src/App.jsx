@@ -1,15 +1,39 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import HomePage from 'pages/HomePage';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
+import Authentication from 'pages/Authentication';
+import supabase from 'config/supabaseClient';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { userLogin } from 'slices/userSlice';
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const keepLogin = async () => {
+    try {
+      const { data, error } = await supabase.auth.getSession();
+      dispatch(userLogin(data.session.user));
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    keepLogin();
+  }, []);
+
   return (
     <>
-      <Navbar />
+      <Navbar onLoading={loading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/authentication/register" element={<Authentication />} />
       </Routes>
       <Footer />
     </>
