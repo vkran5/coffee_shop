@@ -1,4 +1,4 @@
-import testi from 'assets/rectangle 9 (1).png';
+import testi from 'assets/Rectangle 9 (1).png';
 
 const Testimonial = () => {
   return (
