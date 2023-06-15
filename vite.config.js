@@ -6,6 +6,6 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 export default defineConfig({
   plugins: [react(), jsconfigPaths()],
   server: {
-    port: 3000,
+    port: 'https://coffee-shop-khaki.vercel.app/',
   },
 });
