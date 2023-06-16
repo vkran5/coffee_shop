@@ -48,7 +48,7 @@ const SignInComponent = ({ func, sign }) => {
       style={{ animation: 'pop-modal .3s' }}
       className="w-full h-screen backdrop-blur-sm fixed z-10"
     >
-      <div className="flex flex-col w-screen md:w-[504px] h-screen md:h-[574px] justify-start py-10  px-10 md:px-20 border md:rounded-2xl fixed bg-white shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="flex flex-col w-screen md:w-[504px] h-screen md:h-[574px] justify-start py-10 p-4 md:px-20 border md:rounded-2xl fixed bg-white shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div
           onClick={() => {
             func(!sign);

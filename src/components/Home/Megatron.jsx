@@ -20,8 +20,8 @@ const Megatron = () => {
           </div>
         </div>
 
-        <div>
-          <img className="relative" src={cup} alt="" />
+        <div className="mx-auto">
+          <img className="relative w-[175px] md:w-[250px]" src={cup} alt="" />
         </div>
       </div>
     </section>
