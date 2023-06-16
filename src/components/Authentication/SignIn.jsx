@@ -8,13 +8,14 @@ import { useDispatch } from 'react-redux';
 import ErrorMassage from './ErrorMassage';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import PasswordForm from './PasswordForm';
 
 const SignInComponent = ({ func, sign }) => {
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,9 +46,9 @@ const SignInComponent = ({ func, sign }) => {
   return (
     <div
       style={{ animation: 'pop-modal .3s' }}
-      className="w-screen h-screen backdrop-blur-sm fixed z-30"
+      className="w-full h-screen backdrop-blur-sm fixed z-10"
     >
-      <div className="flex flex-col w-screen md:w-[504px] h-screen md:h-[574px] justify-start py-10 md:py-14 px-10 md:px-20 border md:rounded-2xl fixed bg-white shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="flex flex-col w-screen md:w-[504px] h-screen md:h-[574px] justify-start py-10  px-10 md:px-20 border md:rounded-2xl fixed bg-white shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div
           onClick={() => {
             func(!sign);
@@ -68,27 +69,7 @@ const SignInComponent = ({ func, sign }) => {
 
         <EmailForm email={emailInput} setEmail={setEmail} />
 
-        {/* <PasswordForm password={passwordInput} setPassword={setPassword} /> */}
-        <div className="py-2">
-          <p className="font-poppins">Password</p>
-          <input
-            value={passwordInput}
-            onChange={(e) => {
-              setPasswordInput(e.target.value);
-            }}
-            className="border rounded-lg p-2 w-full h-[48px]"
-            type={showPassword ? 'text' : 'password'}
-          />
-
-          <p
-            onClick={() => {
-              setShowPassword(!showPassword);
-            }}
-            className={`z-10 relative text-slate-500 text-[24px] left-[260px] md:left-[300px] bottom-[35px] cursor-pointer`}
-          >
-            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-          </p>
-        </div>
+        <PasswordForm password={passwordInput} setPassword={setPasswordInput} />
 
         {isError && <ErrorMassage />}
 

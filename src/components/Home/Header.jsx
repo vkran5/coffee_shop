@@ -2,8 +2,8 @@ import Button from 'components/Button';
 
 const HeaderComponent = () => {
   return (
-    <div className="w-screen h-screen flex items-center background-image">
-      <div className="w-4/5 lg:w-3/4 mx-auto pt-[84px]">
+    <section className="w-full h-screen flex items-center background-image">
+      <div className="max-w-full w-4/5 lg:w-[1280px] mx-auto pt-[84px]">
         <p className="font-playfair text-[12px] lg:text-[22px] font-medium text-white ">
           We’ve got your morning covered with
         </p>
@@ -20,7 +20,7 @@ const HeaderComponent = () => {
           <Button text={'Order Now'} height={'48px'} width={'148px'} />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

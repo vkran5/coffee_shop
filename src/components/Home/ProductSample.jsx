@@ -32,7 +32,7 @@ const ProdcutComponent = () => {
 
   return (
     <>
-      <div className="w-screen flex pb-10 2xl:relative bottom-10">
+      <section className="w-screen flex pb-10 md::relative bottom-10">
         <div className="w-5/6 2xl:w-3/4 xl:4/5 mx-auto">
           {/* Products */}
           <h1 className="font-playfair text-[32px] lgtext-[57px] font-bold text-coffee text-center">
@@ -61,7 +61,7 @@ const ProdcutComponent = () => {
           </div>
 
           <img
-            className="absolute hidden lg:block right-0 2xl:top-[70vh] md:top-[200vh] xl:top-[230vh]"
+            className="absolute hidden lg:block right-0 2xl:top-[700px] md:top-[2000px] xl:top-[230vh]"
             src={coffeBlast}
             alt="blast/img"
           />
@@ -117,7 +117,7 @@ const ProdcutComponent = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

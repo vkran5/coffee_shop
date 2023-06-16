@@ -2,7 +2,7 @@ import testi from 'assets/Rectangle 9 (1).png';
 
 const Testimonial = () => {
   return (
-    <div className="w-screen flex mb-10">
+    <div className="w-screen flex my-10">
       <div className="w-3/4 mx-auto">
         <h1 className="text-center text-[28px] lg:text-[54px] font-playfair text-coffee font-bold">
           Our coffee perfection feedback

@@ -3,8 +3,8 @@ import coffeBlast from 'assets/coffee_blast.png';
 
 const Description = () => {
   return (
-    <div className="w-screen">
-      <div className="w-5/6 lg:w-3/4 lg:flex justify-between items-center mx-auto py-8 lg:py-20">
+    <section className="w-screen h-[650px] relative ">
+      <div className="w-5/6 lg:w-[1280px] lg:flex justify-between items-center mx-auto py-8 lg:py-20">
         <div className="flex flex-col gap-5 lg:w-1/2">
           <h2 className="font-playfair text-[32px] lg:text-[54px] text-coffee font-semibold">
             Discover the best coffee
@@ -25,15 +25,19 @@ const Description = () => {
           </button>
         </div>
 
-        <img className="w-[500px]" src={beans} alt="bens/img" />
+        <img
+          className="w-[300px] mx-auto lg:w-[500px]"
+          src={beans}
+          alt="bens/img"
+        />
       </div>
 
       <img
-        className="lg:absolute 2xl:top-[150vh] xl:top-[150vh] border"
+        className="hidden lg:block lg:absolute top-[400px] border"
         src={coffeBlast}
         alt="blast/img"
       />
-    </div>
+    </section>
   );
 };
 

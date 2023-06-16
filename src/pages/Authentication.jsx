@@ -79,7 +79,7 @@ const Authentication = () => {
         />
       )}
 
-      <div className="w-screen h-screen flex justify-center items-center md:pt-20  bg-[#f2f2f2] ">
+      <div className="w-full h-screen flex justify-center items-center md:pt-20  bg-[#f2f2f2] ">
         <div className="w-screen md:w-[504px] h-screen md:h-[504px]  md:rounded-2xl bg-white flex justify-center items-center lg:shadow-md">
           <div className="flex flex-col justify-start p-5">
             <div>
@@ -98,7 +98,7 @@ const Authentication = () => {
                   password.match(password_regex)
                     ? 'border-green-500 bg-green-100'
                     : 'border-red-500 bg-red-100'
-                } p-2 rounded-2xl border relative bottom-5`}
+                } p-2 rounded-2xl border relative top-2 `}
               >
                 <p
                   className={`${

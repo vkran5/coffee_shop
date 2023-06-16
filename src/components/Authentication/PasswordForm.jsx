@@ -5,13 +5,14 @@ const PasswordForm = ({ password, setPassword }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="py-2">
-      <p className="font-poppins">Password</p>
+    <form className="py-2 relative w-[350px]">
+      <label className="font-poppins">Password</label>
       <input
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
+        required
         className="border rounded-lg p-2 w-full h-[48px]"
         type={showPassword ? 'text' : 'password'}
       />
@@ -20,11 +21,11 @@ const PasswordForm = ({ password, setPassword }) => {
         onClick={() => {
           setShowPassword(!showPassword);
         }}
-        className={`z-10 relative text-slate-500 text-[24px] left-[290px] bottom-[35px] cursor-pointer`}
+        className={`absolute top-10 left-[315px] text-slate-500 text-[24px] cursor-pointer`}
       >
         {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
       </p>
-    </div>
+    </form>
   );
 };
 

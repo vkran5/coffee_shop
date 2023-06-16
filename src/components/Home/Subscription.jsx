@@ -1,6 +1,6 @@
 const Subscription = () => {
   return (
-    <div className="w-screen h-[374px] bg-subscription flex">
+    <section className="w-screen h-[374px] bg-subscription flex">
       <div className="w-3/4 mx-auto flex flex-col justify-center items-center">
         <div className=" mx-auto ">
           <h1 className="text-[32px] lg:text-[54px] text-center font-playfair text-white">
@@ -23,7 +23,7 @@ const Subscription = () => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
