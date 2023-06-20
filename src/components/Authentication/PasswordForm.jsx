@@ -8,7 +8,7 @@ const PasswordForm = ({ register, errors }) => {
     <div className='relative flex flex-col gap-2'>
       <label className='font-poppins pl-2 md:pl-0'>Password</label>
       <input
-        className='border w-[340px] md:w-[350px] h-[48px] mx-auto rounded-lg p-3'
+        className='border w-[340px] md:w-[350px] h-[48px] rounded-lg p-3'
         type={showPassword ? 'text' : 'password'}
         {...register('password', {
           required: true,

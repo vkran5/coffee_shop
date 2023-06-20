@@ -53,7 +53,7 @@ const SignInComponent = ({ func, sign }) => {
             func(!sign);
             console.log('hit');
           }}
-          className='relative left-[290px] md:left-[375px] md:bottom-[30px] cursor-pointer z-40'
+          className='relative left-[320px] md:left-[375px] md:bottom-[30px] cursor-pointer z-40'
         >
           <p className='text-[20px] '>
             <AiOutlineClose />
