@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import SignInComponent from './Authentication/SignIn';
 import { useState } from 'react';
 import { getUser } from 'slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineUser } from 'react-icons/ai';
-import Loading from './Loading';
 import supabase from 'config/supabaseClient';
 import { userLogOut } from 'slices/userSlice';
+import SignInComponent from 'components/Authentication/SignIn';
+import ProfileBadge from 'components/Authentication/profileBadge';
 
-const Navbar = ({ onLoading }) => {
+const Navbar = () => {
   const [isSignIn, setIsSignIn] = useState(false);
   const { pathname } = window.location;
 
@@ -39,7 +38,7 @@ const Navbar = ({ onLoading }) => {
       ${pathname.includes('/authentication') && 'bg-white absolute'} 
       w-screen h-[100px] flex items-center`}
       >
-        <div className="w-5/6 lg:w-3/4 mx-auto flex justify-between">
+        <div className='w-5/6 lg:w-3/4 mx-auto flex justify-between'>
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'
@@ -54,35 +53,18 @@ const Navbar = ({ onLoading }) => {
               pathname === '/' ? 'text-white' : 'text-coffee'
             }  w-2/5 hidden lg:flex justify-between items-center font-poppins`}
           >
-            <p className="cursor-pointer hover:opacity-50">Home</p>
-            <p className="cursor-pointer hover:opacity-50">Menu</p>
-            <p className="cursor-pointer hover:opacity-50">About Us</p>
-            <p className="cursor-pointer hover:opacity-50">contact Us</p>
+            <p className='cursor-pointer hover:opacity-50'>Home</p>
+            <p className='cursor-pointer hover:opacity-50'>Menu</p>
+            <p className='cursor-pointer hover:opacity-50'>About Us</p>
+            <p className='cursor-pointer hover:opacity-50'>contact Us</p>
           </div>
 
-          {onLoading ? (
-            <Loading />
-          ) : user.id ? (
-            <div
-              onClick={sigOut}
-              className="flex justify-center items-center gap-2 border p-3 rounded-xl hover:opacity-50 cursor-pointer"
-            >
-              <div className="flex justify-center items-center">
-                <p
-                  className={`${
-                    pathname === '/' ? 'text-white' : 'text-coffee'
-                  } text-[20px] relative`}
-                >
-                  <AiOutlineUser />
-                </p>
-              </div>
-
-              <p className="text-white font-poppins hidden lg:block">
-                {user.email}
-              </p>
+          {user.id ? (
+            <div onClick={sigOut}>
+              <ProfileBadge userEmail={user.email} />
             </div>
           ) : (
-            <div className="flex items-center lg:gap-10">
+            <div className='flex items-center lg:gap-10'>
               <button
                 onClick={() => setIsSignIn(!isSignIn)}
                 className={` ${

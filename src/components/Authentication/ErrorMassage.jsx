@@ -1,8 +1,21 @@
-const ErrorMassage = () => {
+import { useEffect } from 'react';
+
+const ErrorMassage = ({ func, isMassage }) => {
   return (
-    <div className="mx-auto border p-3 rounded-2xl border-red-400 bg-red-200">
-      <p className="text-red-400 font-poppins font-semibold">
-        Oops please check your credential
+    <div
+      onClick={() => {
+        func(false);
+      }}
+      style={{ animation: 'pop-modal .3s' }}
+      className={`${
+        isMassage ? 'pop-modal' : 'close-modal'
+      } bg-red-100 rounded-xl transition ease-in-out delay-150 duration-200 border-red-500 absolute border w-[340px] h-[72px] top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+    >
+      <p className='text-center text-red-500 pt-3 font-semibold text-[14px]'>
+        Oops something wrong is happened
+      </p>
+      <p className='text-center text-red-500 pt-3 text-[14px]'>
+        Please check your credential
       </p>
     </div>
   );

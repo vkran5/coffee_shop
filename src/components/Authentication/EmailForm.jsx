@@ -1,17 +1,29 @@
-const EmailForm = ({ email, setEmail }) => {
+const EmailForm = ({ register, errors }) => {
+  // console.log(errors.email);
   return (
-    <form className="py-2 w-[350px]">
-      <label className="font-poppins">Email</label>
+    <>
+      <label className='font-poppins'>Email</label>
       <input
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        className="border h-[48px] rounded-lg p-3 w-full"
-        type="email"
-        required
+        className='border w-[340px] md:w-[350px] h-[48px] rounded-lg p-3'
+        type='email'
+        {...register('email', {
+          required: true,
+          pattern: {
+            value:
+              /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/,
+            message: 'Please use proper email format',
+          },
+        })}
       />
-    </form>
+
+      <div>
+        {errors.email && (
+          <p className='p-1 text-red-500 font-poppins text-[12px] '>
+            {errors.email.message}
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 

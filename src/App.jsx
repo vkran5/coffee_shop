@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from 'pages/HomePage';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import Navbar from 'components/Common/Navbar';
+import Footer from 'components/Common/Footer';
 import Authentication from 'pages/Authentication';
 import supabase from 'config/supabaseClient';
 import { useEffect, useState } from 'react';
@@ -32,8 +32,8 @@ function App() {
     <>
       <Navbar onLoading={loading} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/authentication/register" element={<Authentication />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/authentication/register' element={<Authentication />} />
       </Routes>
       <Footer />
     </>
