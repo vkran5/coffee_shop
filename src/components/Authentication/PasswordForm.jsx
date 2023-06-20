@@ -14,7 +14,7 @@ const PasswordForm = ({ register, errors }) => {
           required: true,
           pattern: {
             value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/,
-            message: 'PPassword contain min 6 chars, 1 uppercase, 1 number',
+            message: 'Password contain min 6 chars, 1 uppercase, 1 number',
           },
         })}
       />

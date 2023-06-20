@@ -5,6 +5,7 @@ import supabase from 'config/supabaseClient';
 import RegisterErrorMassage from 'components/Authentication/RegisterErrorMassage';
 import RegisterSuccessMassage from 'components/Authentication/RegisterSuccessMassage';
 import { useForm } from 'react-hook-form';
+import { Helmet } from 'react-helmet';
 
 const Authentication = () => {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false); // Keep
@@ -42,6 +43,12 @@ const Authentication = () => {
 
   return (
     <>
+      <Helmet
+        title={'BEAN SCENE | SIGN UP'}
+        description={'Regsiter Page'}
+        type={'website'}
+      />
+
       {errorMassage && (
         <RegisterErrorMassage
           func={setErrorMassage}

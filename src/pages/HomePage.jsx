@@ -6,10 +6,16 @@ import Subscription from 'components/Home/Subscription';
 import left from 'assets/left_cup.png';
 import right from 'assets/right_cup.png';
 import Testimonial from 'components/Home/Testimonial';
+import { Helmet } from 'react-helmet';
 
 const HomePage = () => {
   return (
     <>
+      <Helmet
+        title={'BEAN SCENE | HOME'}
+        description={'Home Page'}
+        type={'website'}
+      />
       <HeaderComponent />
       <Description />
       <ProdcutComponent />
@@ -17,15 +23,15 @@ const HomePage = () => {
       <Testimonial />
       <Subscription />
       <img
-        className="absolute hidden lg:block z-10 left-0 top-[4200px] 2xl:top-[450vh] "
+        className='absolute hidden lg:block z-10 left-0 top-[4200px] 2xl:top-[450vh] '
         src={left}
-        alt="lleft/img"
+        alt='lleft/img'
       />
 
       <img
-        className="absolute z-10 hidden lg:block right-0 top-[4200px]  2xl:top-[450vh]"
+        className='absolute z-10 hidden lg:block right-0 top-[4200px]  2xl:top-[450vh]'
         src={right}
-        alt="left/immg"
+        alt='left/immg'
       />
     </>
   );
