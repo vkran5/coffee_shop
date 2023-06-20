@@ -67,7 +67,7 @@ const Authentication = () => {
             </div>
 
             <form
-              className='flex flex-col gap-2 justify-center'
+              className='flex flex-col gap-2 justify-center items-center '
               onSubmit={handleSubmit(signUp)}
             >
               <EmailForm register={register} errors={errors} />

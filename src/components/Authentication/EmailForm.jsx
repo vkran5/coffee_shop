@@ -1,7 +1,7 @@
 const EmailForm = ({ register, errors }) => {
   // console.log(errors.email);
   return (
-    <>
+    <div className='relative flex flex-col gap-2'>
       <label className='font-poppins pl-2 md:pl-0'>Email</label>
       <input
         className='border w-[340px] md:w-[350px] h-[48px] rounded-lg p-3'
@@ -23,7 +23,7 @@ const EmailForm = ({ register, errors }) => {
           </p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
