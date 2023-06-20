@@ -20,7 +20,7 @@ const CardComponent = ({ img, name, price, composition }) => {
 
       <div className='flex absolute left-[30%] top-[93%]'>
         <div className='mx-auto'>
-          <Button height={'48px'} width={'140px'}>
+          <Button text='Order Now' height={'48px'} width={'140px'}>
             Order Now
           </Button>
         </div>

@@ -16,7 +16,7 @@ const Megatron = () => {
           </p>
 
           <div className='mt-5 flex justify-center md:block'>
-            <Button height={'48'} width={'100'}>
+            <Button text='Order Now' height={'48'} width={'100'}>
               Order Now
             </Button>
           </div>

@@ -57,8 +57,8 @@ const Authentication = () => {
       )}
 
       <div className='w-full h-screen flex justify-center items-center md:pt-20  bg-[#f2f2f2] '>
-        <div className='w-screen md:w-[504px] h-screen md:h-[504px]  md:rounded-2xl bg-white flex justify-center items-center lg:shadow-md'>
-          <div className='flex flex-col justify-start p-5'>
+        <div className='w-screen md:w-[504px] h-screen md:h-[504px] md:rounded-2xl bg-white flex justify-center items-center lg:shadow-md'>
+          <div className='flex flex-col mx-auto justify-start p-5'>
             <div>
               <p className='font-poppins'>Start for free</p>
               <h1 className='font-poppins relative bottom-2'>

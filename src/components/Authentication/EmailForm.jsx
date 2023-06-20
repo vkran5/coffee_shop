@@ -2,9 +2,9 @@ const EmailForm = ({ register, errors }) => {
   // console.log(errors.email);
   return (
     <>
-      <label className='font-poppins'>Email</label>
+      <label className='font-poppins pl-2 md:pl-0'>Email</label>
       <input
-        className='border w-[340px] md:w-[350px] h-[48px] rounded-lg p-3'
+        className='border w-[340px] mx-auto md:w-[350px] h-[48px] rounded-lg p-3'
         type='email'
         {...register('email', {
           required: true,
