@@ -38,7 +38,7 @@ const Navbar = () => {
       ${pathname.includes('/authentication') && 'bg-white absolute'} 
       w-screen h-[100px] flex items-center`}
       >
-        <div className='w-5/6 lg:w-3/4 mx-auto flex justify-between'>
+        <div className='w-5/6 max-w-full lg:w-[1280px] mx-auto flex justify-between'>
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'

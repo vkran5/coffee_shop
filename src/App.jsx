@@ -8,6 +8,7 @@ import supabase from 'config/supabaseClient';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'slices/userSlice';
+import Dashboard from 'Pages/Dashboard';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/authentication/register' element={<Authentication />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
       <Footer />
     </>

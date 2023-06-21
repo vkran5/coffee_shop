@@ -22,16 +22,17 @@ const HomePage = () => {
       <Megatron />
       <Testimonial />
       <Subscription />
+
       <img
         className='absolute hidden lg:block z-10 left-0 top-[4200px] 2xl:top-[450vh] '
         src={left}
-        alt='lleft/img'
+        alt='left/img'
       />
 
       <img
-        className='absolute z-10 hidden lg:block right-0 top-[4200px]  2xl:top-[450vh]'
+        className='absolute hidden lg:block right-0 top-[4200px]  '
         src={right}
-        alt='left/immg'
+        alt='right/img'
       />
     </>
   );

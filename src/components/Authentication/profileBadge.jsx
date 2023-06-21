@@ -15,7 +15,13 @@ const ProfileBadge = ({ userEmail }) => {
         </p>
       </div>
 
-      <p className='text-white font-poppins hidden md:block'>{userEmail}</p>
+      <p
+        className={`${
+          pathname === '/dashboard' && 'text-black'
+        } text-white font-poppins hidden md:block`}
+      >
+        {userEmail}
+      </p>
     </div>
   );
 };
