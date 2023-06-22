@@ -6,6 +6,7 @@ import supabase from 'config/supabaseClient';
 import ProductTable from 'components/Dashboard/ProductTable';
 import DeleteProductModal from 'components/Dashboard/DeleteProductModal';
 import { Helmet } from 'react-helmet';
+import AddProductModal from 'components/Dashboard/AddProductModal';
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -37,6 +38,11 @@ const Dashboard = () => {
         description={'Admin Dashboard'}
         type={'website'}
       />
+
+      {isAddProduct && (
+        <AddProductModal setModal={setAddIsProduct} getData={getProduct} />
+      )}
+
       {isEdit && (
         <EditProductModal
           product={editProductData}
@@ -52,6 +58,7 @@ const Dashboard = () => {
           getData={getProduct}
         />
       )}
+
       <div className='w-full h-screen flex'>
         <div className='max-w-full lg:w-[1280px] h-screen mx-auto flex justify-between'>
           <Sidebar />
@@ -62,7 +69,14 @@ const Dashboard = () => {
               <h1 className='font-poppins text-[20px] lg:text-[28px] font-bold'>
                 Product Inventory
               </h1>
-              <Button text='Add Product' width='150px' height='48px' />
+              <Button
+                text='Add Product'
+                width='150px'
+                height='48px'
+                func={() => {
+                  setAddIsProduct(true);
+                }}
+              />
             </div>
 
             <div className='flex flex-col items-center'>
@@ -87,13 +101,14 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((val) => {
+                  {products.map((val, idx) => {
                     return (
                       <ProductTable
                         product={val}
                         setIsEdit={setIsEdit}
                         setEditProductData={setEditProductData}
                         setIsDelete={setIsDelete}
+                        key={idx}
                       />
                     );
                   })}

@@ -53,10 +53,38 @@ const Navbar = () => {
               pathname === '/' ? 'text-white' : 'text-coffee'
             }  w-2/5 hidden lg:flex justify-between items-center font-poppins`}
           >
-            <p className='cursor-pointer hover:opacity-50'>Home</p>
-            <p className='cursor-pointer hover:opacity-50'>Menu</p>
-            <p className='cursor-pointer hover:opacity-50'>About Us</p>
-            <p className='cursor-pointer hover:opacity-50'>contact Us</p>
+            <p
+              onClick={() => {
+                navigate('/');
+              }}
+              className='cursor-pointer hover:opacity-50'
+            >
+              Home
+            </p>
+            <p
+              onClick={() => {
+                navigate('/');
+              }}
+              className='cursor-pointer hover:opacity-50'
+            >
+              Menu
+            </p>
+            <p
+              onClick={() => {
+                navigate('/about');
+              }}
+              className='cursor-pointer hover:opacity-50'
+            >
+              About Us
+            </p>
+            <p
+              onClick={() => {
+                navigate('/');
+              }}
+              className='cursor-pointer hover:opacity-50'
+            >
+              contact Us
+            </p>
           </div>
 
           {user.id ? (

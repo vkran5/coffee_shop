@@ -7,6 +7,8 @@ import {
 import { FaInfo } from 'react-icons/fa';
 
 const Sidebar = () => {
+  const { pathname } = window.location;
+
   return (
     <>
       <div className='w-[150px] lg:w-[250px] min-h-screen border-r flex flex-col gap-8'>
@@ -16,10 +18,18 @@ const Sidebar = () => {
         </div>
 
         <div className='flex gap-4 items-center cursor-pointer'>
-          <p className='text-[16px] lg:text-[20px] text-slate-500'>
+          <p
+            className={`${
+              pathname.includes('/inventory') && 'text-yellow'
+            } font-poppins text-slate-500 text-[16px] lg:text-[20px]`}
+          >
             <FaCoffee />
           </p>
-          <p className='font-poppins text-slate-500 text-[12px] lg:text-[16px]'>
+          <p
+            className={`${
+              pathname.includes('/inventory') && 'text-yellow'
+            } font-poppins text-slate-500 text-[12px] lg:text-[16px]`}
+          >
             Inventory
           </p>
         </div>

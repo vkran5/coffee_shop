@@ -4,7 +4,7 @@ import icons from 'assets/icons.png';
 const Footer = () => {
   return (
     <>
-      <div className='w-screen lg:h-[492px] bg-footer py-3 flex flex-col'>
+      <div className='w-screen lg:h-[400px] bg-footer py-3 flex flex-col'>
         <div className='w-3/4 mx-auto'>
           <div className='lg:pt-[90px] lg:flex gap-20'>
             <div className='lg:5/6 lg:w-1/3'>

@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from 'pages/HomePage';
 import Navbar from 'components/Common/Navbar';
 import Footer from 'components/Common/Footer';
 import Authentication from 'pages/Authentication';
@@ -8,7 +7,9 @@ import supabase from 'config/supabaseClient';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'slices/userSlice';
+import HomePage from 'pages/HomePage';
 import Dashboard from 'Pages/Dashboard';
+import AboutUs from 'Pages/AboutUs';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/authentication/register' element={<Authentication />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard/inventory' element={<Dashboard />} />
+        <Route path='/about' element={<AboutUs />} />
       </Routes>
       <Footer />
     </>
