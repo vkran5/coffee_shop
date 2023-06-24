@@ -7,9 +7,9 @@ import supabase from 'config/supabaseClient';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'slices/userSlice';
-import AboutUs from 'Pages/AboutUs';
+import AboutUs from 'pages/AboutUs';
 import Dashboard from 'pages/Dashboard';
-import HomePage from 'Pages/HomePage';
+import HomePage from 'pages/HomePage';
 
 function App() {
   const [loading, setLoading] = useState(false);
