@@ -3,11 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,700&family=Poppins:wght@500&family=Righteous&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body {
   @apply m-0 flex min-h-[100vh] min-w-[320px] place-items-center overflow-x-hidden font-poppins;
 }
