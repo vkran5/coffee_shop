@@ -4,20 +4,20 @@ import ProductForm from './ProductForm';
 import SubmitButton from 'components/Authentication/SubmitButton';
 import supabase from 'config/supabaseClient';
 import { AiOutlinePicture } from 'react-icons/ai';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
 
-const AddProductModal = ({ setModal, getData }) => {
+const AddProductModal = ({ close, fetchData }) => {
   const [picture, setPicture] = useState('');
   const [pictureDisplay, setPictureDisplay] = useState('');
+  const [isError, setIsError] = useState(false);
+
+  console.log(close);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  console.log(errors);
 
   const uploadImage = (e) => {
     setPicture(e.target.files[0]);
@@ -33,7 +33,6 @@ const AddProductModal = ({ setModal, getData }) => {
   const date = Date.now();
 
   const uploadPicture = async () => {
-    console.log('clicked');
     const { data, error } = await supabase.storage
       .from('products_img')
       .upload(
@@ -66,8 +65,8 @@ const AddProductModal = ({ setModal, getData }) => {
         console.log(error);
       } else {
         uploadPicture();
-        getData();
-        setModal(false);
+        fetchData();
+        close();
       }
     } catch (err) {
       console.log(err);
@@ -77,21 +76,16 @@ const AddProductModal = ({ setModal, getData }) => {
   return (
     <div
       style={{ animation: 'pop-modal .3s' }}
-      className='w-full h-screen backdrop-blur-sm fixed z-10 '
+      className='fixed z-10 h-screen w-full backdrop-blur-sm '
     >
-      <div className='flex flex-col w-screen md:w-[680px] h-screen md:h-[650px] justify-start p-4 md:px-10 border md:rounded-2xl fixed bg-white shadow-lg top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div className='relative left-[320px] md:left-[415px] md:top-[5px] cursor-pointer z-40'>
-          <p
-            onClick={() => {
-              setModal(false);
-            }}
-            className='text-[20px] relative left-[180px] '
-          >
+      <div className='fixed left-1/2 top-1/3 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col justify-start border bg-white p-4 shadow-lg md:h-[650px] md:w-[680px] md:rounded-2xl md:px-10'>
+        <div className='relative left-[320px] z-40 cursor-pointer md:left-[415px] md:top-[5px]'>
+          <p onClick={close} className='relative left-[180px] text-[20px] '>
             <AiOutlineClose />
           </p>
         </div>
         <div>
-          <h1 className='font-poppins relative bottom-2'>Add Product</h1>
+          <h1 className='relative bottom-2 font-poppins'>Add Product</h1>
         </div>
 
         <form
@@ -99,14 +93,14 @@ const AddProductModal = ({ setModal, getData }) => {
           onSubmit={handleSubmit(uploadProduct)}
         >
           <div className='flex gap-4'>
-            <div className='w-1/2 mt-2'>
+            <div className='mt-2 w-1/2'>
               <label className='text-poppins text-[17px] font-medium'>
                 Insert image
               </label>
 
-              <div className='w-[250px] h-[250px] border mt-1 rounded-xl flex justify-center items-center'>
+              <div className='mt-1 flex h-[250px] w-[250px] items-center justify-center rounded-xl border'>
                 {pictureDisplay ? (
-                  <img className='w-[245px] h-[175px] ' src={pictureDisplay} />
+                  <img className='h-[175px] w-[245px] ' src={pictureDisplay} />
                 ) : (
                   <p className='text-[40px] text-slate-400'>
                     <AiOutlinePicture />
@@ -116,7 +110,7 @@ const AddProductModal = ({ setModal, getData }) => {
 
               <br />
               <input
-                className='block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-yellow hover:file:bg-violet-100'
+                className='block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-slate-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-yellow hover:file:bg-violet-100'
                 type='file'
                 onChange={uploadImage}
               />
@@ -169,7 +163,7 @@ const AddProductModal = ({ setModal, getData }) => {
 
           <div>
             {Object.values(errors)[0]?.type || !picture ? (
-              <p className='p-3 text-red-500 font-poppins text-center text-[14px]'>
+              <p className='p-3 text-center font-poppins text-[14px] text-red-500'>
                 Every field must be filled
               </p>
             ) : (

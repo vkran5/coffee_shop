@@ -2,34 +2,54 @@ import Button from 'components/Common/Button';
 import EditProductModal from 'components/Dashboard/EditProductModal';
 import Sidebar from 'components/Dashboard/Sidebar';
 import { useEffect, useState } from 'react';
-import supabase from 'config/supabaseClient';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProductTable from 'components/Dashboard/ProductTable';
 import DeleteProductModal from 'components/Dashboard/DeleteProductModal';
 import { Helmet } from 'react-helmet';
 import AddProductModal from 'components/Dashboard/AddProductModal';
+import { useSupabaseFetch } from 'utils/supabaseHooks';
+import { messageAnimation } from 'utils/animation';
+import PopUpMassage from 'components/Common/PopUpMassage';
+import { modalAnimation } from 'utils/animation';
+import supabase from 'config/supabaseClient';
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
+  const [isError, setIsError] = useState(false);
   const [isAddProduct, setAddIsProduct] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [editProductData, setEditProductData] = useState([]);
+  const { data, error } = useSupabaseFetch({ page: 1, limit: 20 });
 
-  const getProduct = async () => {
+  useEffect(() => {
+    if (data) setProducts(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setIsError(false);
+      }, 3000);
+    }
+  }, [error]);
+
+  const fetchData = async () => {
     try {
-      let { data: products, error } = await supabase
+      const { data, error } = await supabase
         .from('products')
-        .select('*');
+        .select('*')
+        .range(0, 20);
 
-      setProducts(products);
+      if (error) setIsError(true);
+      else setProducts(data);
+
+      console.log(data);
     } catch (err) {
+      if (err) setIsError(true);
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    getProduct();
-  }, []);
 
   return (
     <>
@@ -39,34 +59,72 @@ const Dashboard = () => {
         type={'website'}
       />
 
-      {isAddProduct && (
-        <AddProductModal setModal={setAddIsProduct} getData={getProduct} />
-      )}
+      <AnimatePresence>
+        {isAddProduct && (
+          <motion.div {...modalAnimation}>
+            <AddProductModal
+              fetchData={fetchData}
+              close={() => {
+                setAddIsProduct(false);
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {isEdit && (
-        <EditProductModal
-          product={editProductData}
-          setModal={setIsEdit}
-          getData={getProduct}
-        />
-      )}
+      <AnimatePresence>
+        {isEdit && (
+          <motion.div {...modalAnimation}>
+            <EditProductModal
+              product={editProductData}
+              fetchData={fetchData}
+              close={() => {
+                setIsEdit(false);
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {isDelete && (
-        <DeleteProductModal
-          product={editProductData}
-          setModal={setIsDelete}
-          getData={getProduct}
-        />
-      )}
+      <AnimatePresence>
+        {isDelete && (
+          <motion.div {...modalAnimation}>
+            <DeleteProductModal
+              product={editProductData}
+              fetchData={fetchData}
+              close={() => {
+                setIsDelete(false);
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className='w-full h-screen flex'>
-        <div className='max-w-full lg:w-[1280px] h-screen mx-auto flex justify-between'>
+      <AnimatePresence>
+        {isError && (
+          <motion.div
+            {...messageAnimation}
+            onClick={() => {
+              setIsError(false);
+            }}
+          >
+            <PopUpMassage
+              title='Something wrong is happened'
+              description='Plese try later'
+              type='error'
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className='flex h-screen w-full'>
+        <div className='mx-auto flex h-screen max-w-full justify-between lg:w-[1280px]'>
           <Sidebar />
 
           {/* Inventory */}
-          <div className='lg:border w-[550px] lg:w-[1000px] lg:rounded-md p-5'>
-            <div className='flex justify-between items-center'>
-              <h1 className='font-poppins text-[20px] lg:text-[28px] font-bold'>
+          <div className='w-[550px] p-5 lg:w-[1000px] lg:rounded-md lg:border'>
+            <div className='flex items-center justify-between'>
+              <h1 className='font-poppins text-[20px] font-bold lg:text-[28px]'>
                 Product Inventory
               </h1>
               <Button
@@ -80,22 +138,22 @@ const Dashboard = () => {
             </div>
 
             <div className='flex flex-col items-center'>
-              <table className='table-auto w-[500px] lg:w-[950px]'>
-                <thead className='bg-yellow border border-yellow'>
+              <table className='w-[500px] table-auto lg:w-[950px]'>
+                <thead className='border border-yellow bg-yellow'>
                   <tr>
-                    <th className='text-start font-poppins p-2 text-[12px] lg:text-[16px]'>
+                    <th className='p-2 text-start font-poppins text-[12px] lg:text-[16px]'>
                       Product Name
                     </th>
-                    <th className='text-start font-poppins p-2 text-[12px] lg:text-[16px]'>
+                    <th className='p-2 text-start font-poppins text-[12px] lg:text-[16px]'>
                       Composition
                     </th>
-                    <th className='text-start font-poppins p-2 text-[12px] lg:text-[16px]'>
+                    <th className='p-2 text-start font-poppins text-[12px] lg:text-[16px]'>
                       Price ($)
                     </th>
-                    <th className='text-start font-poppins p-2 text-[12px] lg:text-[16px]'>
+                    <th className='p-2 text-start font-poppins text-[12px] lg:text-[16px]'>
                       Stock
                     </th>
-                    <th className='text-start font-poppins p-2 text-[12px] lg:text-[16px]'>
+                    <th className='p-2 text-start font-poppins text-[12px] lg:text-[16px]'>
                       Edit
                     </th>
                   </tr>

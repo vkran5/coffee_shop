@@ -3,7 +3,7 @@ import cup from 'assets/cup.png';
 
 const Megatron = () => {
   return (
-    <section className='w-screen flex h-[574px] megatron-background items-center'>
+    <section className='w-screen flex h-[574px] bg-megatron bg-no-repeat bg-cover bg-center items-center'>
       <div className='w-3/4 mx-auto flex flex-col md:flex-row'>
         <div className='md:w-2/3'>
           <h1 className='font-playfair text-[20px] text-center md:text-start md:text-[54px] text-white'>

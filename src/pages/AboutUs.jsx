@@ -6,7 +6,6 @@ const AboutUs = () => {
     <div className='w-full flex justify-center'>
       <div className='w-full max-w-[1280px]'>
         <About />
-
         <Pictures />
 
         <h1 className='font-playfair text-yellow text-center text-[42px]'>

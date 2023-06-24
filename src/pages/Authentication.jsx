@@ -2,20 +2,37 @@ import { useEffect, useState } from 'react';
 import EmailForm from 'components/Authentication/EmailForm';
 import PasswordForm from 'components/Authentication/PasswordForm';
 import supabase from 'config/supabaseClient';
-import RegisterErrorMassage from 'components/Authentication/RegisterErrorMassage';
-import RegisterSuccessMassage from 'components/Authentication/RegisterSuccessMassage';
+import PopUpMassage from 'components/Common/PopUpMassage';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet';
+import { motion, AnimatePresence } from 'framer-motion';
+import { messageAnimation } from 'utils/animation';
 
 const Authentication = () => {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false); // Keep
-  const [errorMassage, setErrorMassage] = useState(false); // Keep
+  const [isRegisterError, setIsRegisterError] = useState(false); // Keep
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (isRegisterSuccess) {
+      setTimeout(() => {
+        setIsRegisterSuccess(false);
+      }, 3000);
+    }
+  }, [isRegisterSuccess]);
+
+  useEffect(() => {
+    if (isRegisterError) {
+      setTimeout(() => {
+        setIsRegisterError(false);
+      }, 3000);
+    }
+  }, [isRegisterError]);
 
   const signUp = async (registerData) => {
     try {
@@ -24,20 +41,11 @@ const Authentication = () => {
         password: registerData.password,
       });
 
-      console.log(registerData);
-      console.log(error);
-      console.log(data);
-
-      if (error) {
-        setErrorMassage(true);
-      } else {
-        setIsRegisterSuccess(true);
-        setLoading(false);
-        setErrorMassage(false);
-      }
+      if (error) setIsRegisterError(true);
+      else setIsRegisterSuccess(true);
     } catch (err) {
-      setErrorMassage(true);
       console.log(err);
+      setIsRegisterError(true);
     }
   };
 
@@ -49,38 +57,61 @@ const Authentication = () => {
         type={'website'}
       />
 
-      {errorMassage && (
-        <RegisterErrorMassage
-          func={setErrorMassage}
-          isMassage={RegisterErrorMassage}
-        />
-      )}
+      <AnimatePresence>
+        {isRegisterError && (
+          <motion.div
+            {...messageAnimation}
+            close={() => {
+              setIsRegisterError(false);
+            }}
+          >
+            <PopUpMassage
+              title='Oops something wrong happened'
+              description='Please try later or check yor form'
+              type='error'
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {isRegisterSuccess && (
-        <RegisterSuccessMassage
-          setMassage={setIsRegisterSuccess}
-          massage={RegisterSuccessMassage}
-        />
-      )}
+      <AnimatePresence>
+        {isRegisterSuccess && (
+          <motion.div
+            {...messageAnimation}
+            onClick={() => {
+              setIsRegisterSuccess(false);
+            }}
+          >
+            <PopUpMassage
+              close={() => {
+                setIsRegisterSuccess(false);
+              }}
+              title='Register Success'
+              description='Please check your mailbox'
+              type='success'
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className='w-full h-screen flex justify-center items-center md:pt-20  bg-[#f2f2f2] '>
-        <div className='w-screen md:w-[504px] h-screen md:h-[504px] md:rounded-2xl bg-white flex justify-center items-center lg:shadow-md'>
-          <div className='flex flex-col mx-auto justify-start p-5'>
+      <div className='flex h-screen w-full items-center justify-center bg-[#f2f2f2]  md:pt-20 '>
+        <div className='flex h-screen w-screen items-center justify-center bg-white md:h-[504px] md:w-[504px] md:rounded-2xl lg:shadow-md'>
+          <div className='mx-auto flex flex-col justify-start p-5'>
             <div>
               <p className='font-poppins'>Start for free</p>
-              <h1 className='font-poppins relative bottom-2'>
+              <h1 className='relative bottom-2 font-poppins'>
                 Create new account
               </h1>
             </div>
 
             <form
-              className='flex flex-col gap-2 justify-center items-center '
+              className='flex flex-col items-center justify-center gap-2 '
               onSubmit={handleSubmit(signUp)}
             >
               <EmailForm register={register} errors={errors} />
               <PasswordForm register={register} errors={errors} />
               <input
-                className={`bg-yellow rounded-3xl px-5 py-3 w-[350px] h-[48px] font-poppins text-[18px] mt-5 hover:brightness-95 font-semibold`}
+                className={`mt-5 h-[48px] w-[350px] rounded-3xl bg-yellow px-5 py-3 font-poppins text-[18px] font-semibold hover:brightness-95`}
                 type='submit'
               />
             </form>

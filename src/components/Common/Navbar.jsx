@@ -6,6 +6,9 @@ import supabase from 'config/supabaseClient';
 import { userLogOut } from 'slices/userSlice';
 import SignInComponent from 'components/Authentication/SignIn';
 import ProfileBadge from 'components/Authentication/profileBadge';
+import { AnimatePresence, motion } from 'framer-motion';
+import { modalAnimation } from 'utils/animation';
+import { messageAnimation } from 'utils/animation';
 
 const Navbar = () => {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -29,20 +32,26 @@ const Navbar = () => {
 
   return (
     <>
-      {isSignIn && <SignInComponent func={setIsSignIn} sign={isSignIn} />}
+      <AnimatePresence>
+        {isSignIn && (
+          <motion.div {...modalAnimation}>
+            <SignInComponent func={setIsSignIn} sign={isSignIn} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         className={` ${
           pathname === '/' ? 'absolute bg-transparent shadow-sm' : 'bg-white'
         } 
-      ${pathname.includes('/authentication') && 'bg-white absolute'} 
-      w-screen h-[100px] flex items-center`}
+      ${pathname.includes('/authentication') && 'absolute bg-white'} 
+      flex h-[100px] w-screen items-center`}
       >
-        <div className='w-5/6 max-w-full lg:w-[1280px] mx-auto flex justify-between'>
+        <div className='mx-auto flex w-5/6 max-w-full justify-between lg:w-[1280px]'>
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'
-            } font-clicker text-[23px] lg:text-[35px] font-bold  cursor-pointer`}
+            } cursor-pointer font-clicker text-[23px] font-bold  lg:text-[35px]`}
             onClick={() => navigate('/')}
           >
             Bean Scene
@@ -51,7 +60,7 @@ const Navbar = () => {
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'
-            }  w-2/5 hidden lg:flex justify-between items-center font-poppins`}
+            }  hidden w-2/5 items-center justify-between font-poppins lg:flex`}
           >
             <p
               onClick={() => {
@@ -97,14 +106,14 @@ const Navbar = () => {
                 onClick={() => setIsSignIn(!isSignIn)}
                 className={` ${
                   pathname === '/' && 'text-white'
-                } bg-inherit hover:brightness-90 font-poppins rounded-2xl w-[72px] lg:w-[120px] lg:h-[48px] text-[12px] lg:text-[16px]`}
+                } w-[72px] rounded-2xl bg-inherit font-poppins text-[12px] hover:brightness-90 lg:h-[48px] lg:w-[120px] lg:text-[16px]`}
               >
                 Sign In
               </button>
 
               <button
                 onClick={() => navigate('/authentication/register')}
-                className={`bg-yellow rounded-3xl  text-coffee px-5 py-3 w-[100px] lg:w-[120px] lg:h-[48px] text-[12px] lg:text-[16px] font-poppins hover:brightness-95 font-semibold`}
+                className={`w-[100px] rounded-3xl  bg-yellow px-5 py-3 font-poppins text-[12px] font-semibold text-coffee hover:brightness-95 lg:h-[48px] lg:w-[120px] lg:text-[16px]`}
               >
                 Sign UP
               </button>

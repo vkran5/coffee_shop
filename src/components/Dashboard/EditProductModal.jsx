@@ -4,7 +4,7 @@ import ProductForm from './ProductForm';
 import SubmitButton from 'components/Authentication/SubmitButton';
 import supabase from 'config/supabaseClient';
 
-const EditProductModal = ({ product, setModal, getData }) => {
+const EditProductModal = ({ product, close, fetchData }) => {
   const {
     register,
     handleSubmit,
@@ -27,8 +27,8 @@ const EditProductModal = ({ product, setModal, getData }) => {
       if (error) {
         console.log(error);
       } else {
-        getData();
-        setModal(false);
+        fetchData();
+        close();
       }
 
       console.log('ini data', datum);
@@ -40,21 +40,16 @@ const EditProductModal = ({ product, setModal, getData }) => {
   return (
     <div
       style={{ animation: 'pop-modal .3s' }}
-      className='w-full h-screen backdrop-blur-sm fixed z-10'
+      className='fixed z-10 h-screen w-full backdrop-blur-sm'
     >
-      <div className='flex flex-col w-screen md:w-[504px] h-screen md:h-[650px] justify-start p-4 md:px-10 border md:rounded-2xl fixed bg-white shadow-lg top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div className='relative left-[320px] md:left-[415px] md:top-[5px] cursor-pointer z-40'>
-          <p
-            onClick={() => {
-              setModal(false);
-            }}
-            className='text-[20px] '
-          >
+      <div className='fixed left-1/2 top-1/3 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col justify-start border bg-white p-4 shadow-lg md:h-[650px] md:w-[504px] md:rounded-2xl md:px-10'>
+        <div className='relative left-[320px] z-40 cursor-pointer md:left-[415px] md:top-[5px]'>
+          <p onClick={close} className='text-[20px] '>
             <AiOutlineClose />
           </p>
         </div>
         <div>
-          <h1 className='font-poppins relative bottom-2'>Edit Product</h1>
+          <h1 className='relative bottom-2 font-poppins'>Edit Product</h1>
         </div>
 
         <form
@@ -105,7 +100,7 @@ const EditProductModal = ({ product, setModal, getData }) => {
 
           <div>
             {Object.values(errors)[0]?.type && (
-              <p className='p-3 text-red-500 font-poppins text-center text-[14px]'>
+              <p className='p-3 text-center font-poppins text-[14px] text-red-500'>
                 Every field must be filled
               </p>
             )}

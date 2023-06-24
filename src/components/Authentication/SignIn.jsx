@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import EmailForm from 'components/Authentication/EmailForm';
 import { AiOutlineClose } from 'react-icons/ai';
-import supabase from 'config/supabaseClient';
 import { userLogin } from 'slices/userSlice';
 import { useDispatch } from 'react-redux';
-import ErrorMassage from './ErrorMassage';
 import { useNavigate } from 'react-router-dom';
-import PasswordForm from './PasswordForm';
 import { useForm } from 'react-hook-form';
+import EmailForm from 'components/Authentication/EmailForm';
+import PasswordForm from './PasswordForm';
+import supabase from 'config/supabaseClient';
 import SubmitButton from './SubmitButton';
+import PopUpMassage from 'components/Common/PopUpMassage';
+import { motion, AnimatePresence } from 'framer-motion';
+import { messageAnimation } from 'utils/animation';
 
 const SignInComponent = ({ func, sign }) => {
   const [isError, setIsError] = useState(false);
@@ -43,41 +45,58 @@ const SignInComponent = ({ func, sign }) => {
   };
 
   return (
-    <div
-      style={{ animation: 'pop-modal .3s' }}
-      className='w-full h-screen backdrop-blur-sm fixed z-10'
-    >
-      <div className='flex flex-col w-screen md:w-[504px] h-screen md:h-[574px] justify-start py-10 p-4 md:px-20 border md:rounded-2xl fixed bg-white shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div
-          onClick={() => {
-            func(!sign);
-            console.log('hit');
-          }}
-          className='relative left-[320px] md:left-[375px] md:bottom-[30px] cursor-pointer z-40'
-        >
-          <p className='text-[20px] '>
-            <AiOutlineClose />
-          </p>
-        </div>
-        <div>
-          <p className='font-poppins'>Hello mate,</p>
-          <h1 className='font-poppins relative bottom-2'>
-            Lets grab some coffee
-          </h1>
-        </div>
+    <>
+      <AnimatePresence>
+        {isError && (
+          <motion.div
+            className='top-1/5 absolute left-1/2 z-50'
+            {...messageAnimation}
+            onClick={() => {
+              setIsError(false);
+            }}
+          >
+            <PopUpMassage
+              close={() => {
+                setIsError(false);
+              }}
+              title='Oops something wrong happened'
+              description='Please try later or check your credential'
+              type='error'
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        <form
-          className='flex flex-col gap-2 justify-center'
-          onSubmit={handleSubmit(signIn)}
-        >
-          <EmailForm register={register} errors={errors} />
-          <PasswordForm register={register} errors={errors} />
-          <SubmitButton />
-        </form>
+      <div className='fixed z-10 h-screen w-full backdrop-blur-sm'>
+        <div className='fixed left-1/2 top-1/2 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center  border bg-white p-4 py-10 shadow-lg md:h-[574px] md:w-[514px] md:rounded-2xl md:px-20'>
+          <div
+            onClick={() => {
+              func(!sign);
+            }}
+            className='absolute right-[40px]  top-10 z-40 cursor-pointer'
+          >
+            <p className='text-[20px] '>
+              <AiOutlineClose />
+            </p>
+          </div>
+          <div>
+            <p className='font-poppins'>Hello mate,</p>
+            <h1 className='relative bottom-2 font-poppins'>
+              Lets grab some coffee
+            </h1>
+          </div>
 
-        {isError && <ErrorMassage func={setIsError} isMassage={isError} />}
+          <form
+            className='flex flex-col justify-center gap-2'
+            onSubmit={handleSubmit(signIn)}
+          >
+            <EmailForm register={register} errors={errors} />
+            <PasswordForm register={register} errors={errors} />
+            <SubmitButton />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

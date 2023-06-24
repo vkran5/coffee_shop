@@ -14,7 +14,12 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
       },
       backgroundImage: {
-        landingPage: "url('../assets/coffee_image.png')",
+        header:
+          "linear-gradient(89.82deg, #1e1e1e -6.88%, rgba(0, 0, 0, 0) 87.45%), url('../src/assets/coffee_image.png')",
+        megatron:
+          "linear-gradient(to bottom, #603809, rgba(103, 55, 1, 0.52)), url('../src/assets/glass_coffee.png')",
+        subscription:
+          "linear-gradient(to bottom, #603809, rgba(103, 55, 1, 0.52)), url('../src/assets/subscriptiom.png')",
       },
     },
   },

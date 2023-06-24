@@ -2,7 +2,7 @@ import Button from 'components/Common/Button';
 
 const HeaderComponent = () => {
   return (
-    <section className='w-full h-screen flex items-center background-image'>
+    <section className='w-full h-screen flex items-center bg-header bg-no-repeat bg-cover bg-center'>
       <div className='max-w-full w-4/5 lg:w-[1280px] mx-auto pt-[84px]'>
         <p className='font-playfair text-[12px] lg:text-[22px] font-medium text-white '>
           We’ve got your morning covered with

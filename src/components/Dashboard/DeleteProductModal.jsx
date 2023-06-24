@@ -1,7 +1,7 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import supabase from 'config/supabaseClient';
 
-const DeleteProductModal = ({ product, setModal, getData }) => {
+const DeleteProductModal = ({ product, fetchData, close }) => {
   const onSubmit = async (datum) => {
     try {
       const { data, error } = await supabase
@@ -12,8 +12,8 @@ const DeleteProductModal = ({ product, setModal, getData }) => {
       if (error) {
         console.log(error);
       } else {
-        getData();
-        setModal(false);
+        fetchData();
+        close();
       }
 
       console.log('ini data', datum);
@@ -23,26 +23,18 @@ const DeleteProductModal = ({ product, setModal, getData }) => {
   };
 
   return (
-    <div
-      style={{ animation: 'pop-modal .3s' }}
-      className='w-full h-screen backdrop-blur-sm fixed z-10'
-    >
-      <div className='flex flex-col w-screen md:w-[504px] h-screen md:h-[400px] justify-start p-4 md:px-10 border md:rounded-2xl fixed bg-white shadow-lg top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div className='relative left-[320px] md:left-[415px] md:top-[5px] cursor-pointer z-40'>
-          <p
-            onClick={() => {
-              setModal(false);
-            }}
-            className='text-[20px] '
-          >
+    <div className='fixed z-10 h-screen w-full backdrop-blur-sm'>
+      <div className='fixed left-1/2 top-1/3 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col justify-start border bg-white p-4 shadow-lg md:h-[400px] md:w-[504px] md:rounded-2xl md:px-10'>
+        <div className='relative left-[320px] z-40 cursor-pointer md:left-[415px] md:top-[5px]'>
+          <p onClick={close} className='text-[20px] '>
             <AiOutlineClose />
           </p>
         </div>
 
-        <div className='flex flex-col items-center gap-3 justify-center'>
-          <h1 className='font-poppins relative bottom-2'>Delete Product</h1>
+        <div className='flex flex-col items-center justify-center gap-3'>
+          <h1 className='relative bottom-2 font-poppins'>Delete Product</h1>
 
-          <p className='font-poppins text-[20px] pt-5'>
+          <p className='pt-5 font-poppins text-[20px]'>
             Deleted product can not be undone.
           </p>
           <p className='font-poppins'>Want to delete {product.name} ?</p>
@@ -52,7 +44,7 @@ const DeleteProductModal = ({ product, setModal, getData }) => {
               onClick={() => {
                 onSubmit(product);
               }}
-              className='border rounded-xl text-white text-poppins w-[100px] bg-red-600 hover:brightness-90'
+              className='text-poppins w-[100px] rounded-xl border bg-red-600 text-white hover:brightness-90'
             >
               Yes
             </button>
@@ -60,7 +52,7 @@ const DeleteProductModal = ({ product, setModal, getData }) => {
               onClick={() => {
                 setModal(false);
               }}
-              className='border rounded-xl text-white text-poppins w-[100px] bg-slate-400 hover:brightness-90'
+              className='text-poppins w-[100px] rounded-xl border bg-slate-400 text-white hover:brightness-90'
             >
               Cancel
             </button>
