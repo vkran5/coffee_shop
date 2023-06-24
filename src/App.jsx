@@ -2,13 +2,13 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from 'components/Common/Navbar';
 import Footer from 'components/Common/Footer';
-import Authentication from 'pages/Authentication';
+import Authentication from 'Pages/Authentication';
 import supabase from 'config/supabaseClient';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'slices/userSlice';
-import AboutUs from 'pages/AboutUs';
-import Dashboard from 'pages/Dashboard';
+import AboutUs from 'Pages/AboutUs';
+import Dashboard from 'Pages/Dashboard';
 import HomePage from 'pages/HomePage';
 
 function App() {
