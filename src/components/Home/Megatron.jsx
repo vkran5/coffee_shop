@@ -3,13 +3,13 @@ import cup from 'assets/cup.png';
 
 const Megatron = () => {
   return (
-    <section className='w-screen flex h-[574px] bg-megatron bg-no-repeat bg-cover bg-center items-center'>
-      <div className='w-3/4 mx-auto flex flex-col md:flex-row'>
+    <section className='flex h-[574px] w-screen items-center bg-megatron bg-cover bg-center bg-no-repeat'>
+      <div className='mx-auto flex w-3/4 flex-col md:flex-row'>
         <div className='md:w-2/3'>
-          <h1 className='font-playfair text-[20px] text-center md:text-start md:text-[54px] text-white'>
+          <h1 className='text-center font-playfair text-[20px] text-white md:text-start md:text-[54px]'>
             Get a chance to have an Amazing morning
           </h1>
-          <p className='font-playfair hidden md:block text-[20px] text-white'>
+          <p className=' hidden text-[20px] text-white md:block'>
             We are giving you are one time opportunity to
             <br />
             <span>experience a better life with coffee.</span>

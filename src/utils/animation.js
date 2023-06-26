@@ -13,3 +13,11 @@ export const modalAnimation = {
   exit: { ease: 'linear', opacity: 0 },
   transition: { duration: 0.3 },
 };
+
+export const dropdownAnimation = {
+  key: 'dropdown',
+  initial: { y: '-40%', opacity: 0 },
+  animate: { y: 10, opacity: 1 },
+  exit: { y: '40%', opacity: 0 },
+  transition: { duration: 0.3 },
+};

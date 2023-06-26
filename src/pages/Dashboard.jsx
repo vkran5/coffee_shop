@@ -122,7 +122,7 @@ const Dashboard = () => {
           <Sidebar />
 
           {/* Inventory */}
-          <div className='w-[550px] p-5 lg:w-[1000px] lg:rounded-md lg:border'>
+          <div className='w-[550px] p-5 lg:w-[1000px] lg:rounded-md'>
             <div className='flex items-center justify-between'>
               <h1 className='font-poppins text-[20px] font-bold lg:text-[28px]'>
                 Product Inventory

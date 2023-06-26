@@ -4,12 +4,12 @@ const ProfileBadge = ({ userEmail }) => {
   const { pathname } = window.location;
 
   return (
-    <div className='flex justify-center items-center gap-2 border p-3 rounded-xl hover:opacity-50 cursor-pointer'>
-      <div className='flex justify-center items-center'>
+    <div className='flex cursor-pointer items-center justify-center gap-2 rounded-xl border p-3 hover:opacity-50 lg:w-[250px]'>
+      <div className='flex items-center justify-center'>
         <p
           className={`${
             pathname === '/' ? 'text-white' : 'text-coffee'
-          } text-[20px] relative`}
+          } relative text-[20px]`}
         >
           <AiOutlineUser />
         </p>
@@ -18,7 +18,7 @@ const ProfileBadge = ({ userEmail }) => {
       <p
         className={`${
           pathname === '/' && 'text-white'
-        } text-coffee  font-poppins hidden md:block`}
+        } hidden  font-poppins text-coffee lg:block`}
       >
         {userEmail}
       </p>

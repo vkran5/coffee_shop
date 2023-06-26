@@ -4,12 +4,11 @@ import ProductForm from './ProductForm';
 import SubmitButton from 'components/Authentication/SubmitButton';
 import supabase from 'config/supabaseClient';
 import { AiOutlinePicture } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const AddProductModal = ({ close, fetchData }) => {
   const [picture, setPicture] = useState('');
   const [pictureDisplay, setPictureDisplay] = useState('');
-  const [isError, setIsError] = useState(false);
 
   console.log(close);
 
