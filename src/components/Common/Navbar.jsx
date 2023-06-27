@@ -36,7 +36,7 @@ const Navbar = () => {
         ${pathname.includes('/authentication') && 'absolute bg-white'} 
         flex h-[100px] w-screen items-center`}
       >
-        <div className='mx-auto flex max-w-full justify-between md:w-[700px] lg:w-[1280px]'>
+        <div className='mx-auto flex w-4/5 max-w-full justify-between md:w-[700px] lg:w-[1280px]'>
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'
@@ -49,7 +49,7 @@ const Navbar = () => {
           <div
             className={`${
               pathname === '/' ? 'text-white' : 'text-coffee'
-            }  hidden  items-center gap-5 font-poppins text-[14px] md:flex lg:text-[16px]`}
+            }  hidden  items-center gap-10 font-poppins text-[14px] md:flex lg:text-[16px]`}
           >
             <p
               onClick={() => {
@@ -61,7 +61,7 @@ const Navbar = () => {
             </p>
             <p
               onClick={() => {
-                navigate('/');
+                navigate('/dashboard/inventory');
               }}
               className='cursor-pointer hover:opacity-50'
             >

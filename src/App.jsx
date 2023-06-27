@@ -14,7 +14,10 @@ import Dashboard from 'pages/Dashboard';
 function App() {
   const [loading, setLoading] = useState(false);
 
+  console.log(a);
+
   const dispatch = useDispatch();
+  var getToken = localStorage.getItem('sb-nwnvjsefgvlgbbdmczcm-auth-token');
 
   const keepLogin = async () => {
     try {
@@ -27,7 +30,7 @@ function App() {
   };
 
   useEffect(() => {
-    keepLogin();
+    if (getToken) keepLogin();
   }, []);
 
   return (

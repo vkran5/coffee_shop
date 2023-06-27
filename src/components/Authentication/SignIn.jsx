@@ -68,7 +68,7 @@ const SignInComponent = ({ func, sign }) => {
       </AnimatePresence>
 
       <div className='fixed z-10 h-screen w-full backdrop-blur-sm'>
-        <div className='fixed left-1/2 top-1/2 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center  border bg-white p-4 py-10 shadow-lg md:h-[574px] md:w-[514px] md:rounded-2xl md:px-20'>
+        <div className='fixed left-1/2 top-1/2 z-30 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center  border bg-white p-4 py-10 shadow-lg md:h-[574px] md:w-[514px] md:rounded-2xl md:px-20'>
           <div
             data-testId='function'
             onClick={() => {
