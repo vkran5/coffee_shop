@@ -3,15 +3,13 @@ import Description from 'components/Home/Description';
 import Megatron from 'components/Home/Megatron';
 import ProdcutComponent from 'components/Home/ProductSample';
 import Subscription from 'components/Home/Subscription';
-import left from 'assets/left_cup.png';
-import right from 'assets/right_cup.png';
 import Testimonial from 'components/Home/Testimonial';
-import { Helmet } from 'react-helmet';
+import HeadComponent from 'components/Common/Helmet';
 
 const HomePage = () => {
   return (
     <>
-      <Helmet
+      <HeadComponent
         title={'BEAN SCENE | HOME'}
         description={'Home Page'}
         type={'website'}

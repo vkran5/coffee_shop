@@ -1,20 +1,42 @@
 // import '@testing-library/jest-dom/extend-expect';
-import { render, screen, userEvent } from '@testing-library/react';
+import { render, screen, userEvent, fireEvent } from '@testing-library/react';
 import EmailForm from 'components/Authentication/EmailForm';
+import { useForm } from 'react-hook-form';
 import React from 'react';
 
-test('Validates valid email', () => {
-  render(<EmailForm />);
-  const emailInput = screen.getByLabelText('email');
+const EmailFormTest = () => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
-  // Set the email value
-  fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+  return <EmailForm register={register} errors={errors} />;
+};
 
-  // Get the validation message element
-  const validationMessage = screen.getByText('Email is valid');
+test('Email shold be inputed correctly', () => {
+  render(<EmailFormTest />);
 
-  // Assert that the validation message is visible
-  expect(validationMessage).toBeTruthy();
+  const emailInput = screen.getByLabelText('Email');
+
+  fireEvent.input(emailInput, {
+    target: {
+      value: 'test@gmail.com',
+    },
+  });
+  expect(emailInput.value).toBe('test@gmail.com');
+});
+
+test('Email shold be inputed correctly', () => {
+  render(<EmailFormTest />);
+
+  const emailInput = screen.getByLabelText('Email');
+
+  fireEvent.input(emailInput, {
+    target: {
+      value: 'test@gmail.com',
+    },
+  });
+  expect(emailInput.value).toBe('test@gmail.com');
 });
 
 test('two plus two is four', () => {

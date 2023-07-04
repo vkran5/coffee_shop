@@ -4,17 +4,18 @@ import ProductForm from './ProductForm';
 import SubmitButton from 'components/Authentication/SubmitButton';
 import supabase from 'config/supabaseClient';
 import { AiOutlinePicture } from 'react-icons/ai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const AddProductModal = ({ close, fetchData }) => {
   const [picture, setPicture] = useState('');
   const [pictureDisplay, setPictureDisplay] = useState('');
 
-  console.log(close);
+  // console.log(close);
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -71,6 +72,15 @@ const AddProductModal = ({ close, fetchData }) => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  const watchShowAge = watch('name', false);
 
   return (
     <div

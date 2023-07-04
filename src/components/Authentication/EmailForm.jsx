@@ -1,7 +1,6 @@
 import React from 'react';
 
 const EmailForm = ({ register, errors }) => {
-  // console.log(errors.email);
   return (
     <div className='relative flex flex-col gap-2'>
       <label htmlFor='email' className='pl-2 font-poppins md:pl-0'>
@@ -11,6 +10,7 @@ const EmailForm = ({ register, errors }) => {
         className='h-[48px] w-[340px] rounded-lg border p-3 md:w-[350px]'
         id='email'
         type='email'
+        name='email'
         {...register('email', {
           required: true,
           pattern: {

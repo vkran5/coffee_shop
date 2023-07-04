@@ -9,13 +9,11 @@ class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromError() {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
       return (
         <div className='flex h-screen w-screen items-center justify-center'>
           <div className='flex w-4/5 flex-col justify-center'>

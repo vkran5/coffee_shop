@@ -7,10 +7,20 @@ import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { messageAnimation } from 'utils/animation';
+import { useDispatch } from 'react-redux';
+import { registerAction } from 'config/redux_persist/user/userAction';
+import { shallowEqual, useSelector } from 'react-redux';
+import { userRootSelector } from 'config/redux_persist/user/selector';
 
 const Authentication = () => {
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false); // Keep
   const [isRegisterError, setIsRegisterError] = useState(false); // Keep
+
+  const userState = useSelector(userRootSelector, shallowEqual);
+
+  console.log(userState);
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -41,8 +51,16 @@ const Authentication = () => {
         password: registerData.password,
       });
 
-      if (error) setIsRegisterError(true);
-      else setIsRegisterSuccess(true);
+      dispatch(
+        registerAction({
+          email: registerData.email,
+          password: registerData.password,
+        })
+      );
+
+      if (error) {
+        setIsRegisterError(true);
+      } else setIsRegisterSuccess(true);
     } catch (err) {
       console.log(err);
       setIsRegisterError(true);
