@@ -1,36 +1,35 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import icon from 'assets/coffee_icon.png';
 
 const HeadComponent = ({ title, description, type }) => {
   console.log(title, description, type);
   return (
     <Helmet>
-      {/* Standard metadata tags */}
-      <title>{title}</title>
-      <meta name='description' content={description} data-react-helmet='true' />
-      <link rel='canonical' href='http://localhost:3000/' />
-      {/* End standard metadata tags */}
+      <title>Bean Scene</title>
+      <meta name='title' content='Bean Scene' />
+      <meta name='description' content='Lorem Ipsum dolor ...' />
 
-      {/* Facebook tags */}
-      <meta property='og:type' content={type} />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={description} />
-      <meta property='og:url' content='https://www.www.omiod.com' />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://coffee-shop-khaki.vercel.app/' />
+      <meta property='og:title' content='Bean Scene' />
+      <meta property='og:description' content='Lorem Ipsum dolor ...' />
       <meta
         property='og:image'
-        content='https://i.ibb.co/rtxqpHY/favicon-2.jpg'
-      ></meta>
-      {/* End Facebook tags */}
+        content='https://metatags.io/images/meta-tags.png'
+      />
 
-      {/* Twitter tags */}
-      <meta name='twitter:card' content={type} />
-      <meta name='twitter:title' content={title} />
-      <meta name='twitter:description' content={description} />
+      <meta property='twitter:card' content='summary_large_image' />
+      <meta
+        property='twitter:url'
+        content='https://coffee-shop-khaki.vercel.app/'
+      />
+      <meta property='twitter:title' content='Bean Scene' />
+      <meta property='twitter:description' content='Lorem Ipsum dolor ...' />
       <meta
         property='twitter:image'
-        content='https://i.ibb.co/rtxqpHY/favicon-2.jpg'
-      ></meta>
-      {/* End Twitter tags */}
+        content='https://metatags.io/images/meta-tags.png'
+      />
     </Helmet>
   );
 };

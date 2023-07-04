@@ -1,28 +1,37 @@
 import Button from 'components/Common/Button';
+import HeadComponent from 'components/Common/Helmet';
 
 const HeaderComponent = () => {
   return (
-    <section className='w-full h-screen flex items-center bg-header bg-no-repeat bg-cover bg-center'>
-      <div className='max-w-full w-4/5 lg:w-[1280px] mx-auto pt-[84px]'>
-        <p className='font-playfair text-[12px] lg:text-[22px] font-medium text-white '>
-          We’ve got your morning covered with
-        </p>
-        <p className='font-clicker text-[100px] lg:text-[220px] text-white'>
-          Coffee
-        </p>
-        <p className='font-playfair w-5/6 lg:w-[530px] py-2 text-[12px] lg:text-[20px] font-medium   text-white'>
-          It is best to start your day with a cup of coffee. Discover the best
-          flavours coffee you will ever have. We provide the best for our
-          customers.
-        </p>
+    <>
+      <HeadComponent
+        title={'BEAN SCENE | HOME'}
+        description={'Home Page'}
+        type={'website'}
+      />
 
-        <div className='pt-3'>
-          <Button text={'Order Now'} height={'48px'} width={'148px'}>
-            Order Now
-          </Button>
+      <section className='flex h-screen w-full items-center bg-header bg-cover bg-center bg-no-repeat'>
+        <div className='mx-auto w-4/5 max-w-full pt-[84px] lg:w-[1280px]'>
+          <p className='font-playfair text-[12px] font-medium text-white lg:text-[22px] '>
+            We’ve got your morning covered with
+          </p>
+          <p className='font-clicker text-[100px] text-white lg:text-[220px]'>
+            Coffee
+          </p>
+          <p className='w-5/6 py-2 font-playfair text-[12px] font-medium text-white lg:w-[530px]   lg:text-[20px]'>
+            It is best to start your day with a cup of coffee. Discover the best
+            flavours coffee you will ever have. We provide the best for our
+            customers.
+          </p>
+
+          <div className='pt-3'>
+            <Button text={'Order Now'} height={'48px'} width={'148px'}>
+              Order Now
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
