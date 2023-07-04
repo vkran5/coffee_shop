@@ -6,8 +6,9 @@ const HeaderComponent = () => {
     <>
       <HeadComponent
         title={'BEAN SCENE | HOME'}
-        description={'Home Page'}
-        type={'website'}
+        description={
+          'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia ex numquam sed tempora cum autem earum deleniti, praesentium libero odit totam amet, minima eaque culpa eos maxime saepe fugiat nobis corporis eum. Nam eius beatae odit soluta incidunt. Impedit architecto, nemo deserunt dicta incidunt accusamus?'
+        }
       />
 
       <section className='flex h-screen w-full items-center bg-header bg-cover bg-center bg-no-repeat'>
